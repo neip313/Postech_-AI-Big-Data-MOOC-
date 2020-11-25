@@ -69,7 +69,7 @@ with(test_k,text(accuracy~k,labels = k,pos=1,cex=0.7))
 # minimum k for the highest accuracy
 min(test_k[test_k$accuracy %in% max(accuracy_k),"k"])
 
-#k=7 knn
+#k=7 knn 에서 정확도가 가장 높음
 md1<-knn(train=iris.train,test=iris.test,cl=trainLabels,k=7)
 CrossTable(x=testLabels,y=md1, prop.chisq=FALSE)
 
@@ -91,12 +91,13 @@ legend("bottomright",
 )
 
 ## Weighted KNN packages
+# 거리에 따라 가중치를 부여하는 두 가지 알고리즘이 존재
 install.packages("kknn")#weighted value knn
 library(kknn)
 help("kknn")
 
 # weighted knn
-md2<-kknn(Species~., train=train,test=iris.test,k=5,distance=1,kernel="triangular")
+md2 <- kknn(Species~., train=train, test=iris.test, k=5, distance=1, kernel="triangular")
 md2
 # to see results for weighted knn
 md2_fit<-fitted(md2)
