@@ -1,4 +1,4 @@
-# lec10_12_knn.R
+ # lec10_12_knn.R
 # updated Jun.2018
 
 # lec10_1_knn.R
@@ -6,15 +6,14 @@
 # k-Nearest Neighbor
 
 # packages
-install.packages("class")#no weighted value knn
-install.packages("gmodels")#crosstable
+install.packages("class")#no weighted value knn -> knn수행을 위한 패키지
+install.packages("gmodels")#crosstable -> 분류분석 후 검증에 사용 
 install.packages("scales")#for graph
 library(class)
 library(gmodels)
 library(scales)
 
 # set working directory
-setwd("D:/tempstore/moocr/wk10")
 
 # read csv file
 iris<-read.csv("iris.csv")
@@ -28,11 +27,11 @@ N=nrow(iris)
 tr.idx=sample(1:N, size=N*2/3, replace=FALSE)
 
 # attributes in training and test
-iris.train<-iris[tr.idx,-5]
-iris.test<-iris[-tr.idx,-5]
+iris.train<-iris[tr.idx,-5] # 독립변수 4개를 포함한 100개 데이터 
+iris.test<-iris[-tr.idx,-5] # 독립변수 4개를 포함한 50개의 데이터 
 # target value in training and test
-trainLabels<-iris[tr.idx,5]
-testLabels<-iris[-tr.idx,5]
+trainLabels<-iris[tr.idx,5] # 학습데이터의 타겟변수
+testLabels<-iris[-tr.idx,5] # 검증데이터의 타겟변수 
 
 train<-iris[tr.idx,]
 test<-iris[-tr.idx,]
@@ -44,7 +43,7 @@ help(knn)
 # accuracy of 5-nearest neighbor classification
 CrossTable(x=testLabels,y=md1, prop.chisq=FALSE)
 help(CrossTable)
-
+# testLabels -> 타겟변수의 실제값, md1 -> 예측값 
 ########################
 
 # lec10_2_knn.R
