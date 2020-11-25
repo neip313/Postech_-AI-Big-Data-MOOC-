@@ -1,1 +1,1 @@
-# Postech_-AI-Big-Data-MOOC-
+# Postech_AI_Big_Data_MOOC
