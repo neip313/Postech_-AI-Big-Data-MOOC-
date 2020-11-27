@@ -14,8 +14,12 @@ library(caret)
 setwd("D:/tempstore/moocr/wk11")
 
 # read data
+# Breast Cancer Wisconsin (Diagnostic) Data Set
+# 세침흡인 세포검사를 통해 얻은 683개 유방조직의 9개 특성을 나타냄 
 cancer<-read.csv("cancer.csv")
 head(cancer, n=10)
+# 악성인지 양성인지가 종속변수 
+# benign(양성, 정상), malignant(악성) 
 
 # remover X1 column(ID number)
 cancer<-cancer[, names(cancer) != "X1"]

@@ -1,6 +1,10 @@
 # lec11_2_svm.r
 # Classification 
 # support vector machine using kernel
+# 커널이란?
+# - x의 기저함수(basis function)
+# - x에 대한 새로운 특징을 추출하는 변환함수
+
 
 # install package for support vector machine
 # install.packages("e1071")
@@ -37,13 +41,13 @@ test=iris[-tr.idx,]
 
 #svm using kernel
 help("svm")
-m1<-svm(Species~., data = train)
+m1<-svm(Species~., data = test)
 summary(m1)
-m2<-svm(Species~., data = train,kernel="polynomial")
+m2<-svm(Species~., data = test,kernel="polynomial")
 summary(m2)
-m3<-svm(Species~., data = train,kernel="sigmoid")
+m3<-svm(Species~., data = test,kernel="sigmoid")
 summary(m3)
-m4<-svm(Species~., data = train,kernel="linear")
+m4<-svm(Species~., data = test,kernel="linear")
 summary(m4)
 
 #measure accuracy

@@ -30,16 +30,23 @@ test<-iris[-tr.idx,]
 #decision tree : use rpart package
 help("rpart")
 
+# 의사결정나무 함수 : rpart (종속변수~x1+x2+x3+x4, data= )
 cl1<-rpart(Species~., data=train)
 plot(cl1)
 text(cl1, cex=1.5)
+# rpart 함수는 가지치기를 해서 나온 결과 -> 데이터에 따라 부가적인 가지치기가 필요할 수도 있음
+# * tree패키지에서 pruning한 결과와 동일
 
+# rpart패키지는 과적합의 우려가 있으므로 pruning을 해줘야 함(iris의 경우 필요없음)
+# printcp에서 xerror(cross validation error)의 값이 최소가 되는 마디를 선택 -> 3 
 #pruning (cross-validation)-rpart
 printcp(cl1)
 plotcp(cl1)
+# xerror(cross validation error)의 값이 최소가 되는 마디를 자동으로 선택
 pcl1<-prune(cl1, cp=cl1$cptable[which.min(cl1$cptable[,"xerror"]),"CP"])
 plot(pcl1)
 text(pcl1)
+# rpart결과에서 복잡도계수에 기반한 최적 가지치기
 
 #measure accuracy(rpart)
 pred2<- predict(cl1,test, type='class')
