@@ -15,8 +15,15 @@ library(caret)
 setwd("D:/tempstore/moocr/wk11")
 
 # read data
-iris<-read.csv("iris.csv")
+iris<-read.csv("iris.csv", stringsAsFactors = TRUE)
+#str(iris)
 attach(iris)
+
+iris$Species <- as.factor(iris$Species)
+
+str(iris)
+iris_df <- iris
+str(iris_df)
 
 # training (100) & test set (50)
 set.seed(1000)
